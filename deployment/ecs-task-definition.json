@@ -4,8 +4,8 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "512",
   "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::339713024809:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::339713024809:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::107456217325:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::107456217325:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "metrics-engine",
