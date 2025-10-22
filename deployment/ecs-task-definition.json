@@ -1,0 +1,60 @@
+{
+  "family": "metrics-engine-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "2048",
+  "executionRoleArn": "arn:aws:iam::339713024809:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::339713024809:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "metrics-engine",
+      "image": "339713024809.dkr.ecr.ap-south-1.amazonaws.com/obsera-metrics-engine:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8001,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "PROMETHEUS_URL",
+          "value": "http://prometheus.obsera.local:9090"
+        },
+        {
+          "name": "OLLAMA_URL",
+          "value": "http://ollama.obsera.local:11434"
+        },
+        {
+          "name": "VECTOR_STORE_PATH",
+          "value": "/app/vector_store"
+        },
+        {
+          "name": "API_HOST",
+          "value": "0.0.0.0"
+        },
+        {
+          "name": "API_PORT",
+          "value": "8001"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/metrics-engine",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-create-group": "true"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:8001/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      }
+    }
+  ]
+}
