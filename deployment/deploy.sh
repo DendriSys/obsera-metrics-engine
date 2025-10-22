@@ -7,7 +7,7 @@ set -e
 
 ENVIRONMENT=${1:-production}
 AWS_REGION="ap-south-1"
-AWS_ACCOUNT_ID="339713024809"
+AWS_ACCOUNT_ID="107456217325"
 ECR_REPOSITORY="obsera-metrics-engine"
 ECS_CLUSTER="obsera-cluster"
 ECS_SERVICE="metrics-engine-service"

@@ -9,7 +9,7 @@
   "containerDefinitions": [
     {
       "name": "metrics-engine",
-      "image": "339713024809.dkr.ecr.ap-south-1.amazonaws.com/obsera-metrics-engine:latest",
+      "image": "107456217325.dkr.ecr.ap-south-1.amazonaws.com/obsera-metrics-engine:latest",
       "essential": true,
       "portMappings": [
         {
